@@ -59,11 +59,11 @@ lab_data_trans3 = read.csv(here::here("Data", "transduction_summary_10_3.csv")) 
 
 models_to_try = data.frame(model_name="mass_decay_link_L", frequentist=FALSE,
                            fixed_delay=NA, decay=TRUE,
-                           link_beta=FALSE, link_L=TRUE, link_delay=FALSE, transduction=TRUE)
+                           link_beta=FALSE, link_L=TRUE, transduction=TRUE)
 models_to_try = rbind(models_to_try,
                       data.frame(model_name="frequentist_decay_link_L", frequentist=TRUE,
                                  fixed_delay=NA, decay=TRUE,
-                                 link_beta=FALSE, link_L=TRUE, link_delay=FALSE, transduction=TRUE))
+                                 link_beta=FALSE, link_L=TRUE, transduction=TRUE))
 
 
 all_theta = vector("list", nrow(models_to_try))
@@ -78,7 +78,6 @@ for(i in 1:nrow(models_to_try)){
                        decay = models_to_try$decay[i],
                        link_beta = models_to_try$link_beta[i],
                        link_L = models_to_try$link_L[i],
-                       link_delay = models_to_try$link_delay[i],
                        transduction = models_to_try$transduction[i])
   
   

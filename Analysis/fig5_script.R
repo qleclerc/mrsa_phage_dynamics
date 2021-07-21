@@ -66,7 +66,6 @@ model = choose_model(model,
                      decay = F,
                      link_beta = F,
                      link_L = T,
-                     link_delay = F,
                      transduction = T, fig5 = T)
 
 trace_model = all_params[["freq_burst"]]

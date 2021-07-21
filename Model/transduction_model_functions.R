@@ -1,11 +1,12 @@
 
-choose_model = function(model,
-                        frequentist = FALSE,
-                        fixed_delay = NA,
-                        decay = FALSE,
-                        link_beta = FALSE, link_L = FALSE, link_delay = FALSE,
-                        transduction = FALSE,
-                        fig5 = FALSE){
+choose_model = function(model,                  #model object to modify
+                        frequentist = FALSE,    #frequency-dependent model? Otherwise, density-dependent
+                        fixed_delay = NA,       #define a fixed latent period? Otherwise, will look for one in parameters
+                        decay = FALSE,          #specify a phage decay rate. If this is FALSE, then no phage decay
+                        link_beta = FALSE,      #link adsorption rate to bacterial growth?
+                        link_L = FALSE,         #link burst size to bacterial growth?
+                        transduction = TRUE,    #enable transduction?
+                        fig5 = FALSE){          #specific option to generate additional data for Figure 5
   
   model_simulateDeterministic = function(theta, init.state, times) {
     
@@ -139,7 +140,9 @@ choose_model = function(model,
 }
 
 
-run_mcmc = function(model, lab_data, lab_data2 = NULL,
+run_mcmc = function(model,
+                    lab_data,
+                    lab_data2 = NULL,
                     init.theta = c(beta = 1e10, L = 80, gamma = 30000, alpha = 1e6, tau = 0.3),
                     proposal.sd = init.theta/50000,
                     n.iterations = 10000,
@@ -202,32 +205,17 @@ run_mcmc = function(model, lab_data, lab_data2 = NULL,
 }
 
 
-evaluate_fit = function(model, lab_data, theta){
-  
-  my_init.state <- c(Be = lab_data$Be[1], Bt = lab_data$Bt[1], Bet = 0,
-                     Pl = lab_data$P[1], Pt = 0, Pe = 0)
-  
-  trigger = round(nrow(theta)/10)
-  
-  for(i in 1:nrow(theta)){
-    
-    if(i %% trigger == 0) cat((i/trigger*10), "% done\n")
-    
-    theta_test = theta[i,]
-    theta[i,"log.density"] = dLogPosterior(fitmodel = model, theta = theta_test, init.state = my_init.state, 
-                                           data = lab_data, margLogLike = dTrajObs, log = TRUE)
-    
-  }
-  
-  theta
-}
-
-
-multi_run2 = function(model, theta_trace, init.state, times = seq(0, 24, 1), nruns = 100,
-                      median = TRUE, sampling_error = TRUE, fig5 = FALSE){
+multi_run2 = function(model,
+                      theta_trace,
+                      init.state,
+                      times = seq(0, 24, 1),
+                      nruns = 100,
+                      median = TRUE,
+                      sampling_error = TRUE,
+                      fig5 = FALSE){
   
   if(median){
-    if(!is.null(nrow(theta_trace))) theta = apply(theta_trace, 2, median)#theta_trace[which.max(theta_trace[,"log.density"]),]
+    if(!is.null(nrow(theta_trace))) theta = apply(theta_trace, 2, median)
     else theta = theta_trace
   }
   
@@ -245,7 +233,6 @@ multi_run2 = function(model, theta_trace, init.state, times = seq(0, 24, 1), nru
   
   for(i in 1:nruns){
     
-    #if(!median) theta = apply(theta_trace, 2, FUN = function(x) sample(x, 1))
     if(!median) theta = theta_trace[sample(1:nrow(theta_trace), 1),]
     
     traj = model$simulate(theta, init.state, times)

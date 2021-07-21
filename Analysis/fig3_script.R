@@ -35,12 +35,4 @@ plot_grid(plot_grid(pa,NULL,pc, rel_widths = c(1,0.05,0.7),
           nrow = 3,
           rel_heights = c(0.3,0.05,1))
 
-plot_grid(plot_grid(pa,NULL,pc, rel_heights = c(0.7,0.05,0.7),
-                    ncol = 1, labels = c("a", "", "c")),
-          NULL,
-          plot_grid(pb,NULL,pd, rel_heights = c(1,0.05,1),
-                    ncol = 1, labels = c("b", "", "d")),
-          ncol = 3,
-          rel_widths = c(0.5,0.05,1))
-
-ggsave("fig3full.png", height = 15, width = 10, dpi = 600)
+ggsave(here::here("Figures", "fig3.png"), height = 15, width = 10, dpi = 600)
