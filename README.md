@@ -11,7 +11,10 @@ For any questions, please contact Quentin Leclerc.
 
 ## Data
 
-The "/Data" folder contains
+The "/Data" folder contains the in vitro data generated as part of this project. Please refer to the paper for further details. The files included are:
+- `growth_summary.csv`: results from the growth experiment of the two single-resistant bacterial strains and the one double-resistant progeny strain in the absence of exogenous phage.
+- `transduction_summary_X.csv`: results from the transduction experiment, where "X" is either "10_3", "10_4", or "10_5", indicating the starting phage concentration for that dataset.
+- `varying_MOI_data.xlsx`: results from the transduction experiment conducted with a starting concentration of 10^6 bacteria per mL, with varying starting phage concentrations. 
 
 ## Model
 
@@ -43,11 +46,22 @@ model = choose_model(model,                   #provide model
 
 ## Fitting
 
-The "/Fitting" folder contains
+The "/Fitting" folder contains the scripts used to fit the model to the in vitro data. The `mcmcMH_growth.R` script performs the fitting for the bacterial growth parameters (using the basic growth model, with no phage present), and the other scripts each perform fitting for a different model (e.g. density dependent with adsorption rate linked to bacterial growth, frequency dependent with burst size linked to bacterial growth etc...). Scripts labelled with a "b" are identical to their counterpart without the "b", but with different starting values for the model fitting - so we had two chains for the MCMC fitting process.
+
+Note that the fitting process takes several hours! These script were run several times on parallel servers rather than a single computer as part of this work, until convergence was achieved.
+
+The resulting full MCMC chains are present in the "/Fitting/Full_chains" subfolder as `.RDS` files. The subfolder "/Fitting/Full_chains/Best_fits" contains plots showing the single best-fitting output from the fitting process for each model and chain, for rapid visual inspection.
+
+These full chains have then undergone burning and thinning, resulting in the `.csv` files in the "/Fitting/Fitted_params" subfolder.
+
+Finally, these burned and thinned chains are processed into summary parameter tables (Table 1 in the paper), resulting in the `growth_params.csv` and `transduction_params.csv` files in the "/Fitting" folder.
 
 ## Analysis
 
-The "/Analysis" folder contains
+The "/Analysis" folder contains various scripts used to create the figures shown in the paper. Most are explicitly named to indicate the figure they generate, except the following:
+- `analyse_lab_data.R`: this generate Figure 2 and Supplementary Figure 2, looking at the in vitro data, alongside some bacteria fitness values shown in the paper.
+- `analyse_fitted_models.R`: this converts the burned and thinned fitted parameter chains into summary parameter tables (see previous section), and generates the 1st part of Figure 4.
+- `plot_varying_MOI.R`: this generates the 2nd part of Figure 4, and should be run after the previous script to recreate the complete Figure 4. This script also generates Supplementary Figure 4.
 
 ## Figures
 
