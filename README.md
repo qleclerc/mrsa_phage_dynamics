@@ -40,7 +40,7 @@ model = choose_model(model,                   #provide model
 
 ``` 
 
-- `run_mcmc()`: wrapper function for the model fitting framework provided by the `fitR` package. This is used in the scripts contained in the folder "\Fitting".
+- `run_mcmc()`: wrapper function for the model fitting framework provided by the `fitR` package. This is used in the scripts contained in the folder "/Fitting".
 - `multi_run2()`: function used to run the model multiple times, with multiple ways to introduce random variations through parameter sampling or Poisson resampling of model output.
 
 
