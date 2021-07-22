@@ -2,6 +2,8 @@ model_name <- "transduction model"
 model_state.names <- c("Be","Bt","Bet","Pl", "Pe", "Pt")
 model_theta.names <- c("beta", "L", "alpha", "tau")
 
+#this is empty, it's flexibly filled in by using the choose_model() function
+#please see README and transduction_model_functions.R script
 model_simulateDeterministic <- function(theta,init.state,times) {
   
 }
@@ -27,17 +29,6 @@ model_prior <- function(theta, log = TRUE) {
 ## function to compute the likelihood of one data point
 model_pointLike <- function(data.point, model.point, theta, log = FALSE){
   
-  # dpoisBe = dpois(x = data.point[["Be"]],
-  #                 lambda = model.point[["Be"]],
-  #                 log = log)
-  # 
-  # dpoisBt = dpois(x = data.point[["Bt"]],
-  #                 lambda = model.point[["Bt"]],
-  #                 log = log)
-
-  #model_Bet = max(model.point[["Bet"]], 0)
-  #model_Pl = max(model.point[["Pl"]], 0)
-  
   dpoisBet = dpois(x = data.point[["Bet"]],
                    lambda = model.point[["Bet"]],
                    log = log)
@@ -47,20 +38,11 @@ model_pointLike <- function(data.point, model.point, theta, log = FALSE){
   dpoisPl = dpois(x = round(data.point[["P"]]/(10^(max(floor(log10(data.point[["P"]])),1)-1))),
                   lambda = model.point[["Pl"]]/(10^(max(floor(log10(data.point[["P"]])),1)-1)),
                   log = log)
-  #if(is.infinite(dpoisPl)) dpoisPl = -1e7
-  
+
   ## the prevalence is observed through a Poisson process
   return(sum(2*dpoisBet, dpoisPl))
 }
 
-## function to generate observation from a model simulation
-# phagebac_genObsPoint <- function(model.point, theta){
-#   
-#   ## the prevalence is observed through a Poisson process
-#   obs.point <- rpois(n = 1, lambda = model.point[["I"]])
-#   
-#   return(c(obs = obs.point))
-# }
 
 ## create deterministic SIR fitmodel
 model <- fitR::fitmodel(

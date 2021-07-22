@@ -98,7 +98,6 @@ choose_model = function(model,                  #model object to modify
         
       }
       
-      #no link
       dBe = mu_e * link * (Be - growth_correction*((phi_Pl + phi_Pt) * Be/N) ) - (phi_Pl + phi_Pt) * Be/N
       dBt = mu_t * link * (Bt - growth_correction*((phi_Pl + phi_Pe) * Bt/N) ) - (phi_Pl + phi_Pe) * Bt/N
       dBet = mu_et * link * (Bet - growth_correction*(phi_Pl*Bet/N) ) - phi_Pl * Bet/N +
@@ -110,6 +109,8 @@ choose_model = function(model,                  #model object to modify
       dPe = phi_Pl_past * L * alpha * (Be_past + Bet_past)/N_past - lambda * Pe - gamma * Pe
       dPt = phi_Pl_past * L * alpha * (Bt_past + Bet_past)/N_past - lambda * Pt - gamma * Pt
       
+      
+      #extra variables generated for Figure 5
       if(fig5){
         Bet_tr = unname(phi_Pe*Bt/N + phi_Pt*Be/N) 
         Bet_gr = unname(mu_et*link* (Bet - growth_correction*(phi_Pl*Bet/N)))
@@ -140,17 +141,17 @@ choose_model = function(model,                  #model object to modify
 }
 
 
-run_mcmc = function(model,
-                    lab_data,
-                    lab_data2 = NULL,
-                    init.theta = c(beta = 1e10, L = 80, gamma = 30000, alpha = 1e6, tau = 0.3),
-                    proposal.sd = init.theta/50000,
-                    n.iterations = 10000,
-                    adapt.size.start = 200000,
-                    adapt.size.cooling = 0.99,
-                    adapt.shape.start = 200000,
-                    verbose = FALSE,
-                    growth = FALSE){
+run_mcmc = function(model,       #model object to use
+                    lab_data,    #in vitro dataset to use for model fitting
+                    lab_data2 = NULL,  #optional second dataset to also use
+                    init.theta = c(beta = 1e10, L = 80, gamma = 30000, alpha = 1e6, tau = 0.3), #initial parameter values
+                    proposal.sd = init.theta/50000,  #standard deviation for parameter sampling
+                    n.iterations = 10000,          #number of iterations
+                    adapt.size.start = 200000,     #number of steps before adapting proposal distribution size
+                    adapt.size.cooling = 0.99,     #cooling parameter for adaptation
+                    adapt.shape.start = 200000,    #number of steps before adapting proposal distribution shape
+                    verbose = FALSE,               #optional parameter for more information during fitting
+                    growth = FALSE){               #whether we are fitting only the growth parameters (see paper)
   
   if(growth){
     target_function = function(theta){
@@ -205,15 +206,17 @@ run_mcmc = function(model,
 }
 
 
-multi_run2 = function(model,
-                      theta_trace,
-                      init.state,
-                      times = seq(0, 24, 1),
-                      nruns = 100,
-                      median = TRUE,
-                      sampling_error = TRUE,
-                      fig5 = FALSE){
+multi_run2 = function(model,                  #model object to use
+                      theta_trace,            #parameters to use (a single vector, or chains from the MCMC)
+                      init.state,             #starting values for phage and bacteria
+                      times = seq(0, 24, 1),  #model times
+                      nruns = 100,            #number of runs
+                      median = TRUE,          #should we just use the median values from the provided parameters?
+                      sampling_error = TRUE,  #should Poisson sampling error be added? (see paper)
+                      fig5 = FALSE){          #trigger to deal with additional variables for Figure 5
   
+  #if we only want the median, then need to simplify the provided parameter chains into medians only
+  #however, if we already have provided medians only, this is ignored
   if(median){
     if(!is.null(nrow(theta_trace))) theta = apply(theta_trace, 2, median)
     else theta = theta_trace

@@ -74,14 +74,6 @@ model_pointLike <- function(data.point, model.point, theta, log = FALSE){
   return(sum(dpoisBe, dpoisBt, dpoisBet))
 }
 
-## function to generate observation from a model simulation
-# phagebac_genObsPoint <- function(model.point, theta){
-#   
-#   ## the prevalence is observed through a Poisson process
-#   obs.point <- rpois(n = 1, lambda = model.point[["I"]])
-#   
-#   return(c(obs = obs.point))
-# }
 
 ## create deterministic SIR fitmodel
 model <- fitR::fitmodel(
