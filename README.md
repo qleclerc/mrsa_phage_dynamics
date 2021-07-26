@@ -2,7 +2,7 @@
 
 ## About
 This repository contains all the code used to run the analyses outlined in the corresponding paper.
-Please note that this work is not yet peer-reviewed, and is available [here](www.biorxiv.org).
+Please note that this work is not yet peer-reviewed, and is available [here](https://www.biorxiv.org/content/10.1101/2021.07.24.453184v2).
 
 For any questions, please contact Quentin Leclerc.
 
