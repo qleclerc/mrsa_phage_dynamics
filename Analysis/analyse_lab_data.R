@@ -68,7 +68,7 @@ ggplot(data_all %>% filter(Type != "No phage"), aes(x=Time, y=Mean, colour=Bacte
         strip.text.x = element_text(size=12))
 
 
-ggsave(here::here("Figures", "fig2.png"))
+ggsave(here::here("Figures", "fig2.png"), dpi = 600)
 
 ggplot(data_all %>% filter(Type != "No phage"), aes(x=Time, y=Mean,
                                                     colour=Bacteria, linetype= Type))+
@@ -106,7 +106,7 @@ ggplot(data_all %>% filter(Type != "No phage"), aes(x=Time, y=Mean,
         legend.title = element_text(size=12),
         strip.text.x = element_text(size=12))
 
-ggsave(here::here("Figures", "supp_fig2.png"))
+ggsave(here::here("Figures", "supp_fig2.png"), dpi = 600)
 
 
 fitness = function(data, str1, str2){

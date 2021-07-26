@@ -3,6 +3,7 @@ library(ggpubr)
 library(cowplot)
 library(png)
 library(ggplot2)
+library(scales)
 
 pa = ggplot() + background_image(readPNG(here::here("Figures", "fig3a.png"))) + theme_void()
 pb = ggplot() + background_image(readPNG(here::here("Figures", "fig3b.png"))) + theme_void()
@@ -35,4 +36,4 @@ plot_grid(plot_grid(pa,NULL,pc, rel_widths = c(1,0.05,0.7),
           nrow = 3,
           rel_heights = c(0.3,0.05,1))
 
-ggsave(here::here("Figures", "fig3.png"), height = 15, width = 10, dpi = 600)
+ggsave(here::here("Figures", "fig3.png"), height = 15, width = 10, dpi = 900)

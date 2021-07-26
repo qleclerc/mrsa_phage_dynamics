@@ -257,7 +257,7 @@ fig4c = plot_grid(burst + theme(legend.position = "none"),
 
 #reminder, fig4ab comes from "analyse_fitted_models.R" script!
 plot_grid(fig4ab, NULL, fig4c, nrow = 3, rel_heights = c(2,0.05,1))
-ggsave(here::here("Figures", "fig4.png"), height = 15, width = 18)
+ggsave(here::here("Figures", "fig4.png"), height = 15, width = 18, dpi = 600)
 
 
 
@@ -362,5 +362,5 @@ pboth = plot_grid(both + theme(legend.position = "none"),
           nrow = 1)
 
 plot_grid(pbeta, pboth, nrow = 2, labels = c("a", "b"))
-ggsave(here::here("Figures", "supp_fig4.png"), height = 10, width = 9)
+ggsave(here::here("Figures", "supp_fig4.png"), height = 10, width = 9, dpi = 600)
 

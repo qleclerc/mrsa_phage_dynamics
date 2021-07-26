@@ -202,4 +202,4 @@ ggplot(all_results) +
         legend.title = element_text(size=12),
         strip.text.x = element_text(size=12))
 
-ggsave(here::here("Figures", "supp_fig3.png"))
+ggsave(here::here("Figures", "supp_fig3.png"), dpi = 600)

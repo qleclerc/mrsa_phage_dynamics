@@ -66,8 +66,6 @@ choose_model = function(model,                  #model object to modify
       
       if(link_L) L = L * link + 1
       
-      if(link_delay) tau = tau * (N/Nmax)
-      
       if(frequentist){
         
         growth_correction = 1
