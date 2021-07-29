@@ -36,4 +36,4 @@ plot_grid(plot_grid(pa,NULL,pc, rel_widths = c(1,0.05,0.7),
           nrow = 3,
           rel_heights = c(0.3,0.05,1))
 
-ggsave(here::here("Figures", "fig3.png"), height = 15, width = 10, dpi = 900)
+ggsave(here::here("Figures", "fig3.png"), height = 15, width = 10, dpi = 600)

@@ -256,8 +256,8 @@ fig4c = plot_grid(burst + theme(legend.position = "none"),
           nrow = 1)
 
 #reminder, fig4ab comes from "analyse_fitted_models.R" script!
-plot_grid(fig4ab, NULL, fig4c, nrow = 3, rel_heights = c(2,0.05,1))
-ggsave(here::here("Figures", "fig4.png"), height = 15, width = 18, dpi = 600)
+plot_grid(fig4ab, NULL, fig4c, nrow = 3, rel_heights = c(1,0.05,0.5))
+ggsave(here::here("Figures", "fig4.png"), height = 12, width = 15, dpi = 900)
 
 
 
