@@ -222,5 +222,5 @@ plot_grid(pa,
           nrow = 5, rel_heights = c(0.8,1.2,1,0.05,0.1))
 
 
-ggsave(here::here("Figures","fig5.png"), height = 10, width = 9, dpi = 600)
+ggsave(here::here("Figures","fig6.png"), height = 10, width = 9, dpi = 600)
 

@@ -406,11 +406,11 @@ pbet = ggplot() +
 #final plot
 legend = get_legend(p5_extra + theme(legend.position = "right", legend.box = "horizontal"))
 
-fig4ab = plot_grid(pp + theme(legend.position = "none"),
+fig5ab = plot_grid(pp + theme(legend.position = "none"),
           NULL,
           pbet + theme(legend.position = "none"),
           NULL, legend, nrow = 5, rel_heights = c(1,0.05,0.8,0.05,0.2),
           labels = c("a","", "b", "", ""))
 
-fig4ab
+fig5ab
 

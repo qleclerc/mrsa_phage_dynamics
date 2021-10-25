@@ -248,7 +248,7 @@ burst = ggplot(all_results_L %>% filter(model != "Data")) +
         strip.text.x = element_text(size=12, face = "bold"))
 
 legend = get_legend(d + theme(legend.position = "right", legend.box = "vertical"))
-fig4c = plot_grid(burst + theme(legend.position = "none"),
+fig5c = plot_grid(burst + theme(legend.position = "none"),
           d + theme(legend.position = "none"),
           legend,
           rel_widths = c(1,0.56,0.2),
@@ -256,8 +256,8 @@ fig4c = plot_grid(burst + theme(legend.position = "none"),
           nrow = 1)
 
 #reminder, fig4ab comes from "analyse_fitted_models.R" script!
-plot_grid(fig4ab, NULL, fig4c, nrow = 3, rel_heights = c(1,0.05,0.5))
-ggsave(here::here("Figures", "fig4.png"), height = 12, width = 15, dpi = 900)
+plot_grid(fig5ab, NULL, fig5c, nrow = 3, rel_heights = c(1,0.05,0.5))
+ggsave(here::here("Figures", "fig5.png"), height = 12, width = 15, dpi = 900)
 
 
 
