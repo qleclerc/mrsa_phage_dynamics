@@ -73,7 +73,7 @@ p3b = ggplot() + background_image(readPNG(here::here("Figures", "fig3b.png"))) +
 
 plot_grid(p3a,
           NULL,
-          plot_grid(NULL, p3b, NULL, nrow = 1, rel_widths = c(0.07,1,0.05)),
+          plot_grid(NULL, p3b, NULL, nrow = 1, rel_widths = c(0.06,1,0.01)),
           nrow = 3,
           rel_heights = c(1,0.05,1),
           labels = c("a", "", "b"))
