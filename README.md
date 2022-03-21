@@ -1,8 +1,7 @@
-# The dual nature of bacteriophage: growth-dependent predation and generalised transduction of antimicrobial resistance: Code Repository
+# Growth-dependent predation and generalised transduction of antimicrobial resistance by bacteriophage: Code Repository
 
 ## About
-This repository contains all the code used to run the analyses outlined in the corresponding paper.
-Please note that this work is not yet peer-reviewed, and is available [here](https://www.biorxiv.org/content/10.1101/2021.07.24.453184v2).
+This repository contains all the code used to run the analyses outlined in the corresponding paper available [here](https://journals.asm.org/eprint/QYA5KIMTDWJBPMCZXBRQ/full).
 
 For any questions, please contact Quentin Leclerc.
 
