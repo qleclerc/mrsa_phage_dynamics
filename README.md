@@ -1,7 +1,7 @@
 # Growth-dependent predation and generalised transduction of antimicrobial resistance by bacteriophage: Code Repository
 
 ## About
-This repository contains all the code used to run the analyses outlined in the corresponding paper available [here](https://journals.asm.org/eprint/QYA5KIMTDWJBPMCZXBRQ/full).
+This repository contains all the code used to run the analyses outlined in the corresponding paper available [here](https://journals.asm.org/doi/full/10.1128/msystems.00135-22).
 
 For any questions, please contact Quentin Leclerc.
 
