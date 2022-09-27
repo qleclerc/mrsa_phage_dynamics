@@ -3,11 +3,10 @@ library(ggpubr)
 library(cowplot)
 library(png)
 library(ggplot2)
-library(scales)
 
-pa = ggplot() + background_image(readPNG(here::here("Figures", "fig4a.png"))) + theme_void()
-pb = ggplot() + background_image(readPNG(here::here("Figures", "fig4b.png"))) + theme_void()
-pd = ggplot() + background_image(readPNG(here::here("Figures", "fig4c.png"))) + theme_void()
+pa = ggplot() + background_image(readPNG(here::here("Figures", "fig3a.png"))) + theme_void()
+pb = ggplot() + background_image(readPNG(here::here("Figures", "fig3b.png"))) + theme_void()
+pd = ggplot() + background_image(readPNG(here::here("Figures", "fig3c.png"))) + theme_void()
 
 pc = ggplot() +
   geom_line(aes(x = c(1,1e1,5e1,1e2,5e2,1e3,5e3,1e4,5e4,
@@ -36,4 +35,12 @@ plot_grid(plot_grid(pa,NULL,pc, rel_widths = c(1,0.05,0.7),
           nrow = 3,
           rel_heights = c(0.3,0.05,1))
 
-ggsave(here::here("Figures", "fig4.png"), height = 15, width = 10, dpi = 600)
+plot_grid(plot_grid(pa,NULL,pc, rel_heights = c(0.7,0.05,0.7),
+                    ncol = 1, labels = c("a", "", "c")),
+          NULL,
+          plot_grid(pb,NULL,pd, rel_heights = c(1,0.05,1),
+                    ncol = 1, labels = c("b", "", "d")),
+          ncol = 3,
+          rel_widths = c(0.5,0.05,1))
+
+ggsave("fig3full.png", height = 15, width = 10, dpi = 600)
